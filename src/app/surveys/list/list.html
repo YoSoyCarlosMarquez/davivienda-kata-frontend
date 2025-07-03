@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6>Encuestas</h6>
+            <button class="btn btn-sm bg-gradient-success me-2" (click)="addSurvey()">
+            <i class="fa fa-plus-circle"></i> Nueva
+            </button>
+        </div>
+        
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                <tr>
+                    <th class="text-secondary text-xs font-weight-bolder opacity-7">Detalle</th>
+                    <th class="text-secondary text-xs font-weight-bolder opacity-7 ps-2">N° de Preguntas</th>                    
+                    <th class="text-secondary text-xs opacity-7"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of surveys">
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div><img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1"></div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm">Encuesta #{{ s.id }}</h6>
+                              <p class="text-xs text-secondary mb-0">{{ s.title }}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td><p class="text-xs mb-0">{{ s.questions }}</p></td>
+                        <td class="align-middle">
+                          <!--<button class="btn btn-sm bg-gradient-secondary me-2">
+                            <i class="fa fa-bar-chart"></i> Datos
+                          </button>-->
+                          <button class="btn btn-sm bg-gradient-primary me-2" (click)="edit(s.id)">
+                            <i class="fa fa-edit"></i> Editar
+                          </button>
+                          <button class="btn btn-sm btn-warning me-2" (click)="delete(s.id)">
+                            <i class="fa fa-ban"></i> Eliminar
+                          </button>
+                        </td>
+                    </tr>                      
+                    <tr>
+                        <td colspan="5" class="text-center py-4">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <i class="fa fa-frown-o fa-2x text-muted mb-2"></i>
+                            <p class="mb-0 text-muted">Oops! No has creado ninguna encuesta a&uacute;n</p>
+                        </div>
+                        </td>
+                    </tr>                  
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

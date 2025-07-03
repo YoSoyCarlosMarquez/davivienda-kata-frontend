@@ -1,0 +1,5 @@
+<input [id]="name" [name]="name" [formControl]="control" [type]="type" class="form-control form-control-lg" [placeholder]="label" [attr.aria-label]="label" />
+<div *ngIf="control.touched && control.invalid" class="text-danger mt-1">
+    <small *ngIf="control.errors?.['required']">Este campo es obligatorio</small>
+    <small *ngIf="control.errors?.['minlength']">M&iacute;nimo {{ control.errors?.['minlength'].requiredLength }} caracteres</small>
+</div>
