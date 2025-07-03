@@ -31,12 +31,8 @@ export class Show implements OnInit, AfterViewInit {
 
   surveyComplete (survey: any) {
     const actualId = this.surveyIdInput.nativeElement.value;
-      this.restClient.post({id: actualId, survey: JSON.stringify(survey)}, '/survey/answer').subscribe({
+      this.restClient.post({id: actualId, survey: JSON.stringify(survey.data)}, '/survey/answer').subscribe({
         next: (res) => {
-          const id = res.data?.body?.data?.id;
-          if (id && this.surveyIdInput && actualId == '') {
-            this.surveyIdInput.nativeElement.value = id;
-          }
         },
         error: (err) => {
         }
@@ -53,9 +49,10 @@ export class Show implements OnInit, AfterViewInit {
     this.restClient.get(`/survey/get/${survey}`).subscribe({
       next: (res) => {
         const surveyData = res.data.body.data.survey;
-        const surveyJson = new Model(surveyData);
-        surveyJson.locale = 'es';
-        this.surveyModel = surveyJson;
+        const surveyModel = new Model(surveyData);
+        surveyModel.onComplete.add((sender) => this.surveyComplete(sender));
+        surveyModel.locale = 'es';
+        this.surveyModel = surveyModel;
       },
       error: (err) => {
       }
